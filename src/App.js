@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react'
+import './App.css'
+import { observer } from 'mobx-react'
+import { NewNoteForm } from './NewNoteForm'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = observer(({ store }) => {
 
-export default App;
+  return <>
+    <p>My List of Notes</p>
+    <ul>
+      {store.notes && store.notes.map(note =>
+        <li key={note.id} onClick={() => store.removeNote(note.id)}>
+          {note.text}
+        </li>
+      )}
+      <br />
+      <NewNoteForm />
+    </ul>
+  </>
+
+})
+
+export default App

@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { NotesStore } from './notesStore';
+
+//mobx -> https://mobx.js.org/README.html
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <App store={NotesStore} />
   </React.StrictMode>,
   document.getElementById('root')
 );
